@@ -25,7 +25,12 @@ class UserTest < ActiveSupport::TestCase
     @user.name = "a" * 51
     assert_not @user.valid?
   end
-    
+
+  test "name should not be too short" do
+    @user.name = "a" * 2
+    assert_not @user.valid?  
+  end  
+  
   test "email should not be too long" do
     @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
@@ -58,6 +63,11 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  test "password should have a maximum length" do
+    @user.password = @user.password_confirmation = "a" * 51
+    assert_not @user.valid?
+  end   
 
   test "email addresses should be saved as lower-case" do
     mixed_case_email = "Foo@ExAMPle.CoM"
