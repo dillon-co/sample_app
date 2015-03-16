@@ -1,4 +1,4 @@
-workers Interger(ENV['WEB_CONCURRENCY'] || 2)
+workers Integer(ENV['WEB_CONCURRENCY'] || 2)
 threads_count = Interger(ENV['MAX_THREADS'] || 5)
 threads threads_count, threads_count
 
